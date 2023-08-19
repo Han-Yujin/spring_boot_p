@@ -2,6 +2,8 @@ package com.example.firstproject.dto;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.firstproject.entity.Article;
+
 public class ArticleForm {
 	
 	private String title;
@@ -22,4 +24,10 @@ public class ArticleForm {
 	                ", content='" + content + '\'' +
 	                '}';
 	    }
+
+
+
+	public Article toEntity() {		// TODO Auto-generated method stub
+		return new Article(null,title,content);
+	}
 }
