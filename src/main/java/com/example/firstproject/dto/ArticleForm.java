@@ -1,33 +1,19 @@
 package com.example.firstproject.dto;
 
-import org.springframework.web.bind.annotation.PostMapping;
-
 import com.example.firstproject.entity.Article;
 
+import lombok.AllArgsConstructor;
+
+import lombok.ToString;
+
+@AllArgsConstructor
+@ToString
 public class ArticleForm {
-	
-	private String title;
-	private String content;
-	
-	
-	public ArticleForm(String title, String content) {
-		this.title = title;
-		this.content = content;
-	}
+    
+    private String title; // 제목을 받을 필드
+    private String content; // 내용을 받을 필드
 
-
-
-	 @Override
-	    public String toString() {
-	        return "ArticleForm{" +
-	                "title='" + title + '\'' +
-	                ", content='" + content + '\'' +
-	                '}';
-	    }
-
-
-
-	public Article toEntity() {		// TODO Auto-generated method stub
-		return new Article(null,title,content);
-	}
+    public Article toEntity() {
+        return new Article(title, content);
+    }
 }

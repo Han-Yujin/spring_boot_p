@@ -1,33 +1,40 @@
 package com.example.firstproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
+@Getter
 public class Article {
-	@Id       // 엔티티의 대표값 지정
-	@GeneratedValue	// 자동 생성 기능 추가(숫자가 자동으로 매겨짐)
-	private Long id;  
-	@Column  // title 필드 선연, DB테이블의 title열과 연결
-	private String title; 
-	@Column	 // content필드 선언 
-	
-	private String content;
-	public Article(Long id, String title, String content) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.content = content;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String title;
+    @Column
+    private String content;
+   
 
-	}
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", content=" + content + "]";
-	}
-	
-	
+    public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
-
+    public void patch(Article article) {
+        if (article.title != null)
+            this.title = article.title;
+        if (article.content != null)
+            this.content = article.content;
+    }
 }
